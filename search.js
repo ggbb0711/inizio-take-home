@@ -6,7 +6,15 @@ async function search(query){
     return data;
 }
 
-function loadSearchResulsts(searchResult,element){
+function setUpDownloadElement(jsonData, filename, downloadElement) {
+    const jsonString = JSON.stringify(jsonData);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    downloadElement.href = url;
+    downloadElement.download = filename;
+}
+
+function loadSearchResults(searchResult, element) {
     element.innerHTML = ""; // Clear previous results
     if(!searchResult || searchResult.length === 0){
         element.textContent = "No results found.";
@@ -31,9 +39,9 @@ document.getElementById("searchInput").addEventListener("input",(e)=>{
     resultElement.textContent = "Loading...";
     if(query){
         search(query).then(data => {
-            console.log(data);
-            // You can update the UI with the search results here
-            loadSearchResulsts(data.items, resultElement);
+            const downloadElement = document.getElementById("downloadBtn");
+            loadSearchResults(data.items, resultElement);
+            setUpDownloadElement(data.items, "search-results.json", downloadElement);
         }).catch(error => {
             console.error("Error fetching search results:", error);
             resultElement.textContent = "Error fetching results.";

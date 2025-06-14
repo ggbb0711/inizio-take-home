@@ -5,6 +5,7 @@ main{
     min-height: 100vh;
     max-width: 500px;
     margin: auto;
+    gap: 4px;
 }
 
 #searchInput {
