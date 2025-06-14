@@ -1,12 +1,19 @@
 
 async function search(query){
     const apiKey = "AIzaSyB9KWuDn2iQPuRImq5oMU8Q3AExm9lfdRw";
-    const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=34bc5eb72678646dd&q=${query}`);
+    const cx = "34bc5eb72678646dd"; 
+    const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${query}`);
     const data = await response.json();
     return data;
 }
 
 function setUpDownloadElement(jsonData, filename, downloadElement) {
+    if (!jsonData || jsonData?.length === 0) {
+        downloadElement.removeAttribute('href');
+        downloadElement.removeAttribute('download');
+        downloadElement.classList.add('disabled');
+        return;
+    }
     const jsonString = JSON.stringify(jsonData);
     const blob = new Blob([jsonString], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -16,7 +23,7 @@ function setUpDownloadElement(jsonData, filename, downloadElement) {
 
 function loadSearchResults(searchResult, element) {
     element.innerHTML = ""; // Clear previous results
-    if(!searchResult || searchResult.length === 0){
+    if(!searchResult || searchResult?.length === 0){
         element.textContent = "No results found.";
         return;
     }
@@ -48,3 +55,9 @@ document.getElementById("searchInput").addEventListener("input",(e)=>{
         });
     }
 })
+
+module.exports = {
+    search,
+    setUpDownloadElement,
+    loadSearchResults
+}

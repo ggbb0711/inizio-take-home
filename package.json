@@ -10,7 +10,11 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "dependencies": {
-    "dotenv": "^16.5.0"
+  "jest":{
+    "testEnvironment": "jest-environment-jsdom"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "jest-environment-jsdom": "^30.0.0"
   }
 }
