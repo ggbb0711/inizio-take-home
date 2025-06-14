@@ -1,0 +1,16 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 500px;
+    margin: auto;
+}
+
+#searchInput {
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 20px;
+}
