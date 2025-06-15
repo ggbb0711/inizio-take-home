@@ -1,8 +1,5 @@
-
 async function search(query){
-    const apiKey = "AIzaSyB9KWuDn2iQPuRImq5oMU8Q3AExm9lfdRw";
-    const cx = "34bc5eb72678646dd"; 
-    const response = await fetch(`https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${cx}&q=${query}`);
+    const response = await fetch(`/api/google?q=${encodeURIComponent(query)}`);
     const data = await response.json();
     return data;
 }

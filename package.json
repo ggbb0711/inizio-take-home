@@ -2,7 +2,6 @@
   "name": "inizio-take-home",
   "version": "1.0.0",
   "main": "search.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,11 +9,14 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "jest":{
+  "jest": {
     "testEnvironment": "jest-environment-jsdom"
   },
   "devDependencies": {
     "jest": "^30.0.0",
     "jest-environment-jsdom": "^30.0.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
   }
 }

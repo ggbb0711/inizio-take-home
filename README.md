@@ -6,11 +6,27 @@
 
 ## 🛠️ Getting Started Locally
 
-1. **Install dependencies:**
+1. **Install Netlify CLI:**
+   ```sh
+   npm install -g netlify-cli
+   ```
+
+2. **Create a .env file:**
+   Create a `.env` file in the root directory with the following variables:
+   ```
+   API_KEY=your_google_api_key
+   CX_KEY=your_google_custom_search_cx_key
+   ```
+   You can get these keys from the Google Cloud Console by enabling the Custom Search API.
+
+3. **Install dependencies:**
    ```sh
    npm install
    ```
-2. **Run locally:**
-   - Simply open `index.html` in your browser
+
+4. **Run locally:**
+   - ```sh
+   netlify dev
+   ```
 
 ---
