@@ -25,7 +25,7 @@
    ```
 
 4. **Run locally:**
-   - ```sh
+   ```sh
    netlify dev
    ```
 
