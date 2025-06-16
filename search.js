@@ -16,6 +16,7 @@ function setUpDownloadElement(jsonData, filename, downloadElement) {
     const url = URL.createObjectURL(blob);
     downloadElement.href = url;
     downloadElement.download = filename;
+    downloadElement.classList.remove('disabled');
 }
 
 function loadSearchResults(searchResult, element) {
@@ -41,15 +42,20 @@ document.getElementById("searchInput").addEventListener("input",(e)=>{
     const query = e.target.value;
     const resultElement = document.querySelector(".search-result");
     resultElement.textContent = "Loading...";
+    const downloadElement = document.getElementById("downloadBtn");
     if(query){
         search(query).then(data => {
-            const downloadElement = document.getElementById("downloadBtn");
             loadSearchResults(data.items, resultElement);
             setUpDownloadElement(data.items, "search-results.json", downloadElement);
         }).catch(error => {
             console.error("Error fetching search results:", error);
             resultElement.textContent = "Error fetching results.";
+            setUpDownloadElement([], "search-results.json", downloadElement);
         });
+    }
+    else{
+        resultElement.textContent = "No results found.";
+        setUpDownloadElement([], "search-results.json", downloadElement);
     }
 })
 
