@@ -16,16 +16,18 @@ const mockFetchData = [
     htmlSnippet: 'ipsolurm' 
   }
 ];
+
 global.fetch = jest.fn(() =>
     Promise.resolve({
         json: () => Promise.resolve({ items: mockFetchData }),
     })
 );
 
-// Mock Blob and URL.createObjectURL for the test environment
+// Mock URL.createObjectURL for the test environment
 global.URL = {
     createObjectURL: jest.fn(() => 'blob:mockurl')
 };
+
 
 //Mock the index.html structure
 document.body.innerHTML = `
