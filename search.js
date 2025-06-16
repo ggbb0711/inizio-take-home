@@ -51,6 +51,9 @@ document.getElementById("searchInput").addEventListener("input",(e)=>{
             resultElement.textContent = "Error fetching results.";
         });
     }
+    else{
+        resultElement.textContent = "No search query provided.";
+    }
 })
 
 module.exports = {
